@@ -1,0 +1,14 @@
+<h2>All Movies</h2>
+<div id="search">
+	<%= render :partial => 'search' %>
+</div>
+<br/>
+<br/>
+<%= will_paginate %>
+
+<div class="movies">
+<table>
+  <%= render @movies %>
+</table>
+
+<%= will_paginate %>

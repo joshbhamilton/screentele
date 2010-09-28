@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to h(screening.user_id), :controller => 'users', :action => 'show', :id => screening.user_id %></td>
+  <td><%= screening.title %></td>
+  <td><%= screening.title_id %></td>
+  <td><%= link_to "Delete", :controller=>'screenings',:action => 'destroy',:id=> screening.id %></td>
+</tr>

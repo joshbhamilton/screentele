@@ -1,0 +1,10 @@
+<h2>All Listings</h2>
+<%= will_paginate %>
+
+<ul class="listings" id="listings">
+  <% @listings.each do |c| %>
+     <li><%= c.tvdate %> | <%= c.time %> | <%= c.title_id %> | <%= c.tvchannel %>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

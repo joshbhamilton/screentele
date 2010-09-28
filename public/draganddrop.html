@@ -1,0 +1,160 @@
+<html>
+  <head>
+	<title>Drag and Drop</title>
+	<link rel="stylesheet" href="/stylesheets/draganddrop.css" type="text/css" />
+	<script src="/js/dad.js"></script>
+  </head>
+  <body>
+	<section id="wrapper">
+		<header>
+			<h1>Drag and Drop</h1>
+		</header>
+		<style type="text/css">
+		li {
+			list-style: none;
+		}
+		li a {
+			text-decoration: none;
+			color:  #000;
+			margin: 10px;
+			width: 150px;
+			border: 3px dashed #999;
+			background: #eee;
+			padding: 10px;
+			display: block;
+		}
+		
+		*[draggable=true] {
+			-moz-user-select: none;
+			-khtml-user-drag: element;
+			cursor: move;
+		}
+		
+		*:-khtml-drag {
+			background-color: rgba(238,238,238, 0.5);
+		}
+		
+		li a:hover:after {
+			content: ' (drag me)';
+		}
+		
+		ul {
+			margin-left: 200px;
+			min-height: 300px;
+		}
+		
+		li.over {
+			border-color: #333;
+			background: #ccc;
+		}
+		
+		#bin {
+			background: url(js/bin.jpg) top right no-repeat;
+			height: 250px;
+			width: 166px;
+			float: left;
+			border: 5px solid #000;
+			position: relative;
+			margin-top: 0;
+		}
+		
+		#bin.over {
+			background: url(js/bin.jpg) top left no-repeat;
+		}
+		
+		#bin p {
+			font-weight: bold;
+			text-align: center;
+			postion: absolute;
+			bottom: 20px;
+			width: 166px;
+			font-size: 32px;
+			color: #fff;
+			text-shadow: #000 2px 2px 2px;
+		}
+		</style>
+		<article>
+			<p>Drag the list items over the dustbin, and drop them to have the bin eat the item</p>
+			<div id="bin"></div>
+			<ul>
+				<li><a id="one" href="#">one</a></li>
+				<li><a href="#" id="two">two</a></li>
+				<li><a href="#" id="three">three</a></li>
+				<li><a href="#" id="four">four</a></li>
+				<li><a href="#" id="five">five</a></li>
+			</ul>
+		</article>
+		<script>
+		
+		var eat = ['yum!', 'gulp', 'burp!', 'nom'];
+		var yum = document.createElement('p');
+		var msie = /*@cc_on!@*/0;
+		yum.style.opacity = 1;
+		
+		var links = document.querySelectorAll('li > a'), el = null;
+		for (var i = 0; i < links.length; i++) {
+			el = links[i];
+			
+			el.setAttribute('draggable', 'true');
+			
+			addEvent(el, 'dragstart', function (e) {
+				e.dataTransfer.effectAllowed = 'copy'; 
+				e.dataTransfer.setData('Text', this.id);
+			});
+		}
+		
+		var bin = document.querySelector('#bin');
+		
+		addEvent(bin, 'dragover', function (e) {
+			if (e.preventDefault) e.preventDefault();
+			this.className = 'over';
+			e.dataTransfer.dropEffect = 'copy';
+			e.datatransfer.dropEffect = 'copy';
+			return false;
+		});
+		
+		addEvent(bin, 'dragenter', function (e) {
+			this.className = 'over';
+			return false;
+		});
+		
+		addEvent(bin, 'dragleave', function () {
+			this.className = '';
+		});
+		
+		addEvent(bin, 'drop', function (e) {
+			if (e.stopPropagation) e.stopPropagation();
+			
+			var el = document.getElementById(e.dataTransfer.getData('Text'));
+			el.parentNode.removeChild(el);
+			
+			bin.className = '';
+			yum.innerHTML = eat[parseInt(Math.random() * eat.length)];
+			
+			var y = yum.cloneNode(true);
+			bin.appendChild(y);
+			
+			setTimeout(function () {
+				var t = setInterval(function () {
+					if (y.style.opacity <= 0) {
+						if (msie) {
+							y.style.display = 'none';
+						}
+						clearInterval(t);
+					} else {
+						y.style.opacity -= 0.1;
+					}
+				}, 50);
+			}, 250);
+			
+			return false;
+		});
+		
+		
+					}
+						}
+					}
+				})
+			})
+		})
+</html>

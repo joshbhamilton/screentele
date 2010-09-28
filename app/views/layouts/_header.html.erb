@@ -1,0 +1,19 @@
+<div id="header" class="round">
+  <%= link_to logo, root_path %>
+  <ul class="navigation round">
+    <li><%= link_to "Home", root_path %></li>
+    <% if signed_in? %>
+    <li><%= link_to "Users", users_path %></li>
+    <li><%= link_to "Movies", movies_path %></li>
+    <li><%= link_to "Screenings", :controller => 'screenings', :action => 'index'%></li>
+	<li><%= link_to "Listings", :controller => 'listings', :action => 'match' %></li>
+    <li><%= link_to "Profile", current_user %></li>
+    <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+    <% end %>
+    <% if signed_in? %>
+    <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+    <% else %>
+    <li><%= link_to "Sign in", signin_path %></li>
+    <% end %>
+  </ul>
+</div>

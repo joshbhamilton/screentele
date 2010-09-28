@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to h(movie.title), movie %></td>
+  <td><%= movie.title_id %></td>
+  <td><%= link_to "Add", :controller => 'screenings', :action => 'create', :id => movie.id %></td>
+</tr>

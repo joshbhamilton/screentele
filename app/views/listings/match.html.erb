@@ -1,0 +1,9 @@
+<h2>Your Listings</h2>
+
+
+<ul class="listings" id="listings">
+  <% @listings.each do |c| %>
+     <li><%= c.tvdate %> | <%= c.time %> | <%= c.title_id %> | <%= c.title %> | <%= c.tvchannel %>
+  <% end %>
+</ul>
+

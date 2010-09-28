@@ -1,0 +1,23 @@
+<%= image_tag(@poster, :alt=>@movie.title_id, :size => "103x151") %>
+<table class="profile">
+  <tr>
+    <td class="main">
+      <h2>
+        <%= h @movie.title %> (<%= link_to @movie.year, :controller => 'movies',:action => 'by_year', :id => @movie.year %>)
+      </h2>
+      <h4>Director:
+        <%= link_to @movie.director, :controller => 'movies', :action => 'by_director', :id => @movie.director %>  (<%= @d_count %>)</h4>
+      <p><%= h @movie.plot %></p>
+      <ul class="cast" id="cast">
+	  	<% @cast.each do |c| %>
+	     <li><%= c  %> </li>
+	  	<% end %>
+	  </ul>
+    </td>
+    <td class="sidebar round">
+      <strong><%= link_to "By Year", :controller => 'movies', :action => 'by_year', :id => @movie.year %></strong>
+	  <br/>
+      <strong><%= link_to "By Director", :controller => 'movies', :action => 'by_director', :id => @movie.director %></strong> 
+    </td>
+  </tr>
+</table>
